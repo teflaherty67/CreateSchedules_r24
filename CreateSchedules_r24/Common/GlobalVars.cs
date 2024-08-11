@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CreateSchedules_r24
 {
-    internal static class Globals
+    internal static class GlobalVars
     {
         public static string JobNumber;
 

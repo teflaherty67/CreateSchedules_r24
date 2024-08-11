@@ -171,6 +171,30 @@ namespace CreateSchedules_r24
             return curParam?.Id;
         }
 
+        internal static Parameter GetParameterByName(Element curElem, string paramName)
+        {
+            foreach (Parameter curParam in curElem.Parameters)
+            {
+                if (curParam.Definition.Name.ToString() == paramName)
+                    return curParam;
+            }
+
+            return null;
+        }
+
+        internal static bool SetParameterValue(Element curElem, string paramName, string value)
+        {
+            Parameter curParam = GetParameterByName(curElem, paramName);
+
+            if (curParam != null)
+            {
+                curParam.Set(value);
+                return true;
+            }
+
+            return false;
+        }
+
         #endregion
 
         #region Ribbon
@@ -290,6 +314,36 @@ namespace CreateSchedules_r24
                 SchedulableField newField = new SchedulableField(ScheduleFieldType.Instance, curParam.Id);
                 newSched.Definition.AddField(newField);
             }
+        }
+
+        internal static void DuplicateAndConfigureEquipmentSchedule(Document curDoc)
+        {
+            // duplicate the first schedule with "Roof Ventilation Equipment" in the name
+            List<ViewSchedule> listSched = Utils.GetAllScheduleByNameContains(curDoc, "Roof Ventilation Equipment");
+            ViewSchedule dupSched = listSched.FirstOrDefault();
+
+            if (dupSched == null)
+            {
+                // call another method to create one
+
+                return; // no schedule to duplicate
+            }
+
+            // duplicate the schedule
+            ViewSchedule equipmentSched = curDoc.GetElement(dupSched.Duplicate(ViewDuplicateOption.Duplicate)) as ViewSchedule;
+
+            // rename the duplicated schedule to the new elevation
+            string originalName = equipmentSched.Name;
+            string[] schedTitle = originalName.Split('-');
+
+            equipmentSched.Name = schedTitle[0] + "- Elevation " + GlobalVars.ElevDesignation;
+
+            //// set the design option to the specified elevation designation
+            //DesignOption curOption = Utils.getDesignOptionByName(curDoc, "Elevation : " + Globals.ElevDesignation);
+
+            //Parameter doParam = veneerSched.get_Parameter(BuiltInParameter.VIEWER_OPTION_VISIBILITY);
+
+            //doParam.Set(curOption.Id); //??? the code is getting the right option, but it's not changing anything in the model
         }
 
         #endregion
@@ -470,14 +524,11 @@ namespace CreateSchedules_r24
 
             // rename the duplicated schedule to the new elevation
             string originalName = indexSched.Name;
-            string[] schedTitle = originalName.Split('C');
+            string[] schedTitle = originalName.Split('-');
 
-            string curTitle = schedTitle[0];
+            string curTitle = schedTitle[0];            
 
-            string lastChar = curTitle.Substring(curTitle.Length - 2);
-            string newLast = Globals.ElevDesignation.ToString();
-
-            indexSched.Name = curTitle.Replace(lastChar, newLast);
+            indexSched.Name = schedTitle[0] + "- Elevation " + GlobalVars.ElevDesignation;
 
             // update the filter value to the new elevation code filter
             ScheduleFilter codeFilter = indexSched.Definition.GetFilter(0);
@@ -509,7 +560,7 @@ namespace CreateSchedules_r24
             string originalName = veneerSched.Name;
             string[] schedTitle = originalName.Split('-');
 
-            veneerSched.Name = schedTitle[0] + "- Elevation " + Globals.ElevDesignation;
+            veneerSched.Name = schedTitle[0] + "- Elevation " + GlobalVars.ElevDesignation;
 
             //// set the design option to the specified elevation designation
             //DesignOption curOption = Utils.getDesignOptionByName(curDoc, "Elevation : " + Globals.ElevDesignation);
@@ -561,38 +612,7 @@ namespace CreateSchedules_r24
             {
                 return null;
             }
-
-        }
-
-        internal static void DuplicateAndConfigureEquipmentSchedule(Document curDoc)
-        {
-            // duplicate the first schedule with "Roof Ventilation Equipment" in the name
-            List<ViewSchedule> listSched = Utils.GetAllScheduleByNameContains(curDoc, "Roof Ventilation Equipment");
-            ViewSchedule dupSched = listSched.FirstOrDefault();
-
-            if (dupSched == null)
-            {
-                // call another method to create one
-
-                return; // no schedule to duplicate
-            }
-
-            // duplicate the schedule
-            ViewSchedule equipmentSched = curDoc.GetElement(dupSched.Duplicate(ViewDuplicateOption.Duplicate)) as ViewSchedule;
-
-            // rename the duplicated schedule to the new elevation
-            string originalName = equipmentSched.Name;
-            string[] schedTitle = originalName.Split('-');
-
-            equipmentSched.Name = schedTitle[0] + "- Elevation " + Globals.ElevDesignation;
-
-            //// set the design option to the specified elevation designation
-            //DesignOption curOption = Utils.getDesignOptionByName(curDoc, "Elevation : " + Globals.ElevDesignation);
-
-            //Parameter doParam = veneerSched.get_Parameter(BuiltInParameter.VIEWER_OPTION_VISIBILITY);
-
-            //doParam.Set(curOption.Id); //??? the code is getting the right option, but it's not changing anything in the model
-        }
+        }       
     }
 }
 

@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RevitAddIns>
   <AddIn Type="Command">
-    <Text>CreateSchedules_r24 - Command 1</Text>
+    <Text>CreateSchedules_r24 - Create Schedules</Text>
     <Description>Some description</Description>
     <Assembly>CreateSchedules_r24\CreateSchedules_r24.dll</Assembly>
-    <FullClassName>CreateSchedules_r24.Command1</FullClassName>
+    <FullClassName>CreateSchedules_r24.cmdCreateSchedules</FullClassName>
     <ClientId>6e2e239c-dc00-486f-bb24-79f6c610c23b</ClientId>
     <VendorId>com.YOUR COMPANY NAME</VendorId>
     <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>

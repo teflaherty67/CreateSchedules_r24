@@ -17,17 +17,17 @@ namespace CreateSchedules_r24
             // set some variables for paramter values
             string newFilter = "";
 
-            if (Globals.ElevDesignation == "A")
+            if (GlobalVars.ElevDesignation == "A")
                 newFilter = "1";
-            else if (Globals.ElevDesignation == "B")
+            else if (GlobalVars.ElevDesignation == "B")
                 newFilter = "2";
-            else if (Globals.ElevDesignation == "C")
+            else if (GlobalVars.ElevDesignation == "C")
                 newFilter = "3";
-            else if (Globals.ElevDesignation == "D")
+            else if (GlobalVars.ElevDesignation == "D")
                 newFilter = "4";
-            else if (Globals.ElevDesignation == "S")
+            else if (GlobalVars.ElevDesignation == "S")
                 newFilter = "5";
-            else if (Globals.ElevDesignation == "T")
+            else if (GlobalVars.ElevDesignation == "T")
                 newFilter = "6";
 
             frmCreateSchedules curForm = new frmCreateSchedules()
@@ -42,7 +42,7 @@ namespace CreateSchedules_r24
 
             // get data from the form
 
-            Globals.ElevDesignation = curForm.GetComboBoxElevationSelectedItem();
+            GlobalVars.ElevDesignation = curForm.GetComboBoxElevationSelectedItem();
             int floorNum = curForm.GetComboBoxFloorsSelectedItem();
             string typeFoundation = curForm.GetGroup1();
             string typeAttic = curForm.GetGroup2();
@@ -75,7 +75,7 @@ namespace CreateSchedules_r24
 
                 // check to see if the sheet index exists
 
-                ViewSchedule schedIndex = Utils.GetScheduleByNameContains(curDoc, "Sheet Index - Elevation " + Globals.ElevDesignation);
+                ViewSchedule schedIndex = Utils.GetScheduleByNameContains(curDoc, "Sheet Index - Elevation " + GlobalVars.ElevDesignation);
 
                 if (chbIndexResult == true && schedIndex == null)
                 {
@@ -86,7 +86,7 @@ namespace CreateSchedules_r24
 
                 #region Exterior Veneer Calculations
 
-                ViewSchedule veneerIndex = Utils.GetScheduleByNameContains(curDoc, "Exterior Veneer Calculations - Elevation " + Globals.ElevDesignation);
+                ViewSchedule veneerIndex = Utils.GetScheduleByNameContains(curDoc, "Exterior Veneer Calculations - Elevation " + GlobalVars.ElevDesignation);
 
                 if (chbVeneerResult == true && veneerIndex == null)
                 {
@@ -102,7 +102,7 @@ namespace CreateSchedules_r24
                 if (chbFloorResult == true)
                 {
                     // set the variable for the floor Area Scheme name
-                    AreaScheme floorAreaScheme = Utils.GetAreaSchemeByName(curDoc, Globals.ElevDesignation + " Floor");
+                    AreaScheme floorAreaScheme = Utils.GetAreaSchemeByName(curDoc, GlobalVars.ElevDesignation + " Floor");
 
                     // set the variable for the color fill scheme
                     ColorFillScheme floorColorScheme = Utils.GetColorFillSchemeByName(curDoc, "Floor", floorAreaScheme);
@@ -126,7 +126,7 @@ namespace CreateSchedules_r24
                     #region Floor Area Plans
 
                     // check if area plans exist
-                    ViewPlan areaFloorView = Utils.GetAreaPlanByViewFamilyName(curDoc, Globals.ElevDesignation + " Floor");
+                    ViewPlan areaFloorView = Utils.GetAreaPlanByViewFamilyName(curDoc, GlobalVars.ElevDesignation + " Floor");
 
                     // if the floor area scheme exists, check to see if the floor area plans exist
 
@@ -240,7 +240,7 @@ namespace CreateSchedules_r24
                         ViewSchedule vtFloorSched = Utils.GetViewScheduleTemplateByName(curDoc, "-Schedule-");
 
                         // create the new schedule
-                        ViewSchedule newFloorSched = Utils.CreateAreaSchedule(curDoc, "Floor Areas - Elevation " + Globals.ElevDesignation, floorAreaScheme);
+                        ViewSchedule newFloorSched = Utils.CreateAreaSchedule(curDoc, "Floor Areas - Elevation " + GlobalVars.ElevDesignation, floorAreaScheme);
                         newFloorSched.ViewTemplateId = vtFloorSched.Id;
 
                         if (areaFloorView != null)
@@ -390,7 +390,7 @@ namespace CreateSchedules_r24
                 if (chbFrameResult == true)
                 {
                     // set the variable for the frame Area Scheme name
-                    AreaScheme frameAreaScheme = Utils.GetAreaSchemeByName(curDoc, Globals.ElevDesignation + " Frame");
+                    AreaScheme frameAreaScheme = Utils.GetAreaSchemeByName(curDoc, GlobalVars.ElevDesignation + " Frame");
 
                     // set the variable for the color fill scheme
                     ColorFillScheme frameColorScheme = Utils.GetColorFillSchemeByName(curDoc, "Frame", frameAreaScheme);
@@ -412,7 +412,7 @@ namespace CreateSchedules_r24
                     #region Frame Area Plans
 
                     // check to see if the frame area plans exist
-                    ViewPlan areaFrameView = Utils.GetAreaPlanByViewFamilyName(curDoc, Globals.ElevDesignation + " Frame");
+                    ViewPlan areaFrameView = Utils.GetAreaPlanByViewFamilyName(curDoc, GlobalVars.ElevDesignation + " Frame");
 
                     // if the frame area scheme exists, check to see if the frame area plans exist
                     if (frameAreaScheme != null)
@@ -510,7 +510,7 @@ namespace CreateSchedules_r24
                     ViewSchedule vtFrameSched = Utils.GetViewScheduleTemplateByName(curDoc, "-Frame Areas-");
 
                     // create the new schedule
-                    ViewSchedule newFrameSched = Utils.CreateAreaSchedule(curDoc, "Frame Areas - Elevation " + Globals.ElevDesignation, frameAreaScheme);
+                    ViewSchedule newFrameSched = Utils.CreateAreaSchedule(curDoc, "Frame Areas - Elevation " + GlobalVars.ElevDesignation, frameAreaScheme);
                     newFrameSched.ViewTemplateId = vtFrameSched.Id;
 
                     if (areaFrameView != null)
@@ -627,7 +627,7 @@ namespace CreateSchedules_r24
                 if (chbAtticResult == true)
                 {
                     // set the variable for the attic area scheme name
-                    AreaScheme atticAreaScheme = Utils.GetAreaSchemeByName(curDoc, Globals.ElevDesignation + " Roof Ventilation");
+                    AreaScheme atticAreaScheme = Utils.GetAreaSchemeByName(curDoc, GlobalVars.ElevDesignation + " Roof Ventilation");
 
                     // set the variable for the color fill scheme
                     ColorFillScheme atticColorScheme = Utils.GetColorFillSchemeByName(curDoc, "Attic", atticAreaScheme);
@@ -651,7 +651,7 @@ namespace CreateSchedules_r24
                     #region Attic Area Plans
 
                     // check if the attic area plans exists
-                    ViewPlan areaAtticView = Utils.GetAreaPlanByViewFamilyName(curDoc, Globals.ElevDesignation + " Roof Ventilation");
+                    ViewPlan areaAtticView = Utils.GetAreaPlanByViewFamilyName(curDoc, GlobalVars.ElevDesignation + " Roof Ventilation");
 
                     // create a variable for the attic level
                     string atticLevel = "";
@@ -732,7 +732,7 @@ namespace CreateSchedules_r24
                     ViewSchedule vtAtticSched = Utils.GetViewScheduleTemplateByName(curDoc, "-Schedule-");
 
                     // create the new schedule
-                    ViewSchedule newAtticSched = Utils.CreateAreaSchedule(curDoc, "Roof Ventilation Calculations - Elevation " + Globals.ElevDesignation, atticAreaScheme);
+                    ViewSchedule newAtticSched = Utils.CreateAreaSchedule(curDoc, "Roof Ventilation Calculations - Elevation " + GlobalVars.ElevDesignation, atticAreaScheme);
                     newAtticSched.ViewTemplateId = vtAtticSched.Id;
 
                     if (typeAttic == "Multi-Space")
@@ -796,7 +796,7 @@ namespace CreateSchedules_r24
                     #region Roof Ventilation Equipment
 
                     // search for equipement schedule
-                    ViewSchedule equipmentSched = Utils.GetScheduleByNameContains(curDoc, "Roof Ventilation Equipment - Elevation " + Globals.ElevDesignation);
+                    ViewSchedule equipmentSched = Utils.GetScheduleByNameContains(curDoc, "Roof Ventilation Equipment - Elevation " + GlobalVars.ElevDesignation);
 
                     // if not found, create it
                     if (chbAtticResult == true && equipmentSched == null)
