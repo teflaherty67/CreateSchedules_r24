@@ -111,7 +111,7 @@ namespace CreateSchedules_r24
                     {
                         // if null, warn the user & exit the command
                         TaskDialog tdFloorError = new TaskDialog("Error");
-                        tdFloorError.MainIcon = TaskDialogIcon.TaskDialogIconWarning;
+                        tdFloorError.MainIcon = Icon.TaskDialogIconWarning;
                         tdFloorError.Title = "Create Schedules";
                         tdFloorError.TitleAutoPrefix = false;
                         tdFloorError.MainContent = "Either the Area Scheme, or the Color Scheme, does not exist " +
@@ -399,7 +399,7 @@ namespace CreateSchedules_r24
                     {
                         // if null, warn the user & exit the command
                         TaskDialog tdFrameError = new TaskDialog("Error");
-                        tdFrameError.MainIcon = TaskDialogIcon.TaskDialogIconWarning;
+                        tdFrameError.MainIcon = Icon.TaskDialogIconWarning;
                         tdFrameError.Title = "Create Schedules";
                         tdFrameError.TitleAutoPrefix = false;
                         tdFrameError.MainContent = "Either the Area Scheme, or the Color Scheme, does not exist " +
@@ -636,7 +636,7 @@ namespace CreateSchedules_r24
                     {
                         // if null, warn the user & exit the command
                         TaskDialog tdAtticError = new TaskDialog("Error");
-                        tdAtticError.MainIcon = TaskDialogIcon.TaskDialogIconWarning;
+                        tdAtticError.MainIcon = Icon.TaskDialogIconWarning;
                         tdAtticError.Title = "Create Schedules";
                         tdAtticError.TitleAutoPrefix = false;
                         tdAtticError.MainContent = "Either the attic Area Scheme, or the attic Color Scheme, does not exist " +
@@ -815,7 +815,7 @@ namespace CreateSchedules_r24
             // alert the user
             // if null, warn the user & exit the command
             TaskDialog tdSchedSuccess = new TaskDialog("Complete");
-            tdSchedSuccess.MainIcon = TaskDialogIcon.TaskDialogIconInformation;
+            tdSchedSuccess.MainIcon = Icon.TaskDialogIconInformation;
             tdSchedSuccess.Title = "Create Schedules";
             tdSchedSuccess.TitleAutoPrefix = false;
             tdSchedSuccess.MainContent = "The specified schedules have been created. However, the API is not capable of setting the Design Option or adding calculated paramters. " +
@@ -840,7 +840,7 @@ namespace CreateSchedules_r24
             }
             else
             {
-                Common.clsButtonData myButtonData1 = new Common.clsButtonData(
+                clsButtonData myButtonData1 = new clsButtonData(
                     buttonInternalName,
                     buttonTitle,
                     methodBase,

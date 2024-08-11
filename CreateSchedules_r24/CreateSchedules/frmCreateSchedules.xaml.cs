@@ -20,7 +20,7 @@ namespace CreateSchedules_r24
     public partial class frmCreateSchedules : Window
     {
 
-        List<CheckBox> allCheckboxes = new List<CheckBox>();
+        List<Controls.CheckBox> allCheckboxes = new List<Controls.CheckBox>();
 
         public frmCreateSchedules()
         {
