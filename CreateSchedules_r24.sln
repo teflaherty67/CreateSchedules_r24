@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateSchedules_r24", "CreateSchedules_r24\CreateSchedules_r24.csproj", "{0E5455EF-D203-486F-A0E3-B46469CDE896}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug R24|Any CPU = Debug R24|Any CPU
+		Debug R25|Any CPU = Debug R25|Any CPU
+		Release R24|Any CPU = Release R24|Any CPU
+		Release R25|Any CPU = Release R25|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E5455EF-D203-486F-A0E3-B46469CDE896}.Debug R24|Any CPU.ActiveCfg = Debug R24|Any CPU
+		{0E5455EF-D203-486F-A0E3-B46469CDE896}.Debug R24|Any CPU.Build.0 = Debug R24|Any CPU
+		{0E5455EF-D203-486F-A0E3-B46469CDE896}.Debug R25|Any CPU.ActiveCfg = Debug R25|Any CPU
+		{0E5455EF-D203-486F-A0E3-B46469CDE896}.Debug R25|Any CPU.Build.0 = Debug R25|Any CPU
+		{0E5455EF-D203-486F-A0E3-B46469CDE896}.Release R24|Any CPU.ActiveCfg = Release R24|Any CPU
+		{0E5455EF-D203-486F-A0E3-B46469CDE896}.Release R24|Any CPU.Build.0 = Release R24|Any CPU
+		{0E5455EF-D203-486F-A0E3-B46469CDE896}.Release R25|Any CPU.ActiveCfg = Release R25|Any CPU
+		{0E5455EF-D203-486F-A0E3-B46469CDE896}.Release R25|Any CPU.Build.0 = Release R25|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {13310152-65BF-4939-948F-E80EA83A64A2}
+	EndGlobalSection
+EndGlobal
