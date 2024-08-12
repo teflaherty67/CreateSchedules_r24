@@ -190,6 +190,9 @@ namespace CreateSchedules_r24
                                     {
                                         Utils.CreateFloorAreaWithTag(curDoc, curView, ref insPoint, ref tagInsert, areaInfo);
                                     }
+
+                                    // add the color fill legend
+                                    Utils.AddColorLegend(curDoc, curView);
                                 }
                                 else if (curView.Name == "Main Level" || curView.Name == "First Floor")
                                 {

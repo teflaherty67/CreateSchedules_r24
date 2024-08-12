@@ -1,4 +1,6 @@
-﻿using System.Windows.Media.Imaging;
+﻿using Autodesk.Revit.DB;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace CreateSchedules_r24
 {
@@ -528,7 +530,7 @@ namespace CreateSchedules_r24
             string originalName = indexSched.Name;
             string[] schedTitle = originalName.Split('-');
 
-            string curTitle = schedTitle[0];            
+            string curTitle = schedTitle[0];
 
             indexSched.Name = schedTitle[0] + "- Elevation " + GlobalVars.ElevDesignation;
 
@@ -541,7 +543,7 @@ namespace CreateSchedules_r24
             {
                 codeFilter.SetValue(newFilter);
                 indexSched.Definition.SetFilter(0, codeFilter);
-            }    
+            }
         }
 
         internal static void DuplicateAndConfigureVeneerSchedule(Document curDoc)
@@ -618,7 +620,30 @@ namespace CreateSchedules_r24
             {
                 return null;
             }
-        }       
+        }
+
+        internal static void AddColorLegend(Document curDoc, ViewPlan curView)
+        {
+            // get element ID of view
+            ElementId curViewID = curView.Id;
+
+            // Find the color fill legend applied to the view
+            ColorFillLegend curLegend = Utils.GetColorLegendByView(curView);
+
+            // get element ID of legend
+            ElementId curLegendID = curLegend.Id;
+
+            // define the insertion point
+            XYZ insPoint = new XYZ(0, 0, 0);
+
+            // create new instance of color fill legend
+            ColorFillLegend.Create(curDoc, curViewID, curLegendID, insPoint);
+        }
+
+        private static ColorFillLegend GetColorLegendByView(ViewPlan curView)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
