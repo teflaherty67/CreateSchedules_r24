@@ -338,6 +338,8 @@ namespace CreateSchedules_r24
 
             equipmentSched.Name = schedTitle[0] + "- Elevation " + GlobalVars.ElevDesignation;
 
+            Utils.SetParameterValue(equipmentSched, "Elevation Designation", "Elevation " + GlobalVars.ElevDesignation);
+
             //// set the design option to the specified elevation designation
             //DesignOption curOption = Utils.getDesignOptionByName(curDoc, "Elevation : " + Globals.ElevDesignation);
 
@@ -530,6 +532,8 @@ namespace CreateSchedules_r24
 
             indexSched.Name = schedTitle[0] + "- Elevation " + GlobalVars.ElevDesignation;
 
+            Utils.SetParameterValue(indexSched, "Elevation Designation", "Elevation " + GlobalVars.ElevDesignation);
+
             // update the filter value to the new elevation code filter
             ScheduleFilter codeFilter = indexSched.Definition.GetFilter(0);
 
@@ -537,7 +541,7 @@ namespace CreateSchedules_r24
             {
                 codeFilter.SetValue(newFilter);
                 indexSched.Definition.SetFilter(0, codeFilter);
-            }
+            }    
         }
 
         internal static void DuplicateAndConfigureVeneerSchedule(Document curDoc)
@@ -561,6 +565,8 @@ namespace CreateSchedules_r24
             string[] schedTitle = originalName.Split('-');
 
             veneerSched.Name = schedTitle[0] + "- Elevation " + GlobalVars.ElevDesignation;
+
+            Utils.SetParameterValue(veneerSched, "Elevation Designation", "Elevation " + GlobalVars.ElevDesignation);
 
             //// set the design option to the specified elevation designation
             //DesignOption curOption = Utils.getDesignOptionByName(curDoc, "Elevation : " + Globals.ElevDesignation);

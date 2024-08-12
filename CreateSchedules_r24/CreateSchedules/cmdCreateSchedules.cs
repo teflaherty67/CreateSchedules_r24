@@ -242,6 +242,7 @@ namespace CreateSchedules_r24
                         // create the new schedule
                         ViewSchedule newFloorSched = Utils.CreateAreaSchedule(curDoc, "Floor Areas - Elevation " + GlobalVars.ElevDesignation, floorAreaScheme);
                         newFloorSched.ViewTemplateId = vtFloorSched.Id;
+                        Utils.SetParameterValue(newFloorSched, "Elevation Designation", "Elevation " + GlobalVars.ElevDesignation);
 
                         if (areaFloorView != null)
                         {
@@ -512,6 +513,7 @@ namespace CreateSchedules_r24
                     // create the new schedule
                     ViewSchedule newFrameSched = Utils.CreateAreaSchedule(curDoc, "Frame Areas - Elevation " + GlobalVars.ElevDesignation, frameAreaScheme);
                     newFrameSched.ViewTemplateId = vtFrameSched.Id;
+                    Utils.SetParameterValue(newFrameSched, "Elevation Designation", "Elevation " + GlobalVars.ElevDesignation);
 
                     if (areaFrameView != null)
                     {
@@ -726,7 +728,7 @@ namespace CreateSchedules_r24
 
                     #region Roof Ventilation Calculations
 
-                    // if the attic plans exist, create the ventilation calculaitons schedule
+                    // if the attic plans exist, create the ventilation calculations schedule
 
                     // create & set variable for the view template
                     ViewSchedule vtAtticSched = Utils.GetViewScheduleTemplateByName(curDoc, "-Schedule-");
@@ -734,6 +736,7 @@ namespace CreateSchedules_r24
                     // create the new schedule
                     ViewSchedule newAtticSched = Utils.CreateAreaSchedule(curDoc, "Roof Ventilation Calculations - Elevation " + GlobalVars.ElevDesignation, atticAreaScheme);
                     newAtticSched.ViewTemplateId = vtAtticSched.Id;
+                    Utils.SetParameterValue(newAtticSched, "Elevation Designation", "Elevation " + GlobalVars.ElevDesignation);
 
                     if (typeAttic == "Multi-Space")
                     {
