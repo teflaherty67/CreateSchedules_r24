@@ -213,6 +213,9 @@ namespace CreateSchedules_r24
                                     {
                                         Utils.CreateFloorAreaWithTag(curDoc, curView, ref insPoint, ref tagInsert, areaInfo);
                                     }
+
+                                    // add the color fill legend
+                                    Utils.AddColorLegend(curDoc, curView);
                                 }
                                 else
                                 {

@@ -631,7 +631,7 @@ namespace CreateSchedules_r24
             ColorFillLegend curLegend = Utils.GetColorLegendByView(curView);
 
             // get element ID of legend
-            ElementId curLegendID = curLegend.Id;
+            ElementId curLegendID = View.GetColorFillSchemeId(curView);
 
             // define the insertion point
             XYZ insPoint = new XYZ(0, 0, 0);
@@ -642,7 +642,11 @@ namespace CreateSchedules_r24
 
         private static ColorFillLegend GetColorLegendByView(ViewPlan curView)
         {
-            throw new NotImplementedException();
+            ColorFillLegend m_col = new FilteredElementCollector(curView.Document, curView.Id)
+                .OfCategory(BuiltInCategory.OST_ColorFillLegends).Cast<ColorFillLegend>()
+                .First();
+
+            return m_col;
         }
     }
 }
