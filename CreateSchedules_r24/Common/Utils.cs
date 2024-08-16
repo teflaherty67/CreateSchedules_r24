@@ -622,31 +622,15 @@ namespace CreateSchedules_r24
             }
         }
 
-        internal static void AddColorLegend(Document curDoc, ViewPlan curView)
+        internal static void AddColorLegend(View view, ColorFillScheme scheme)
         {
-            // get element ID of view
-            ElementId curViewID = curView.Id;
+            ElementId areaCatId = new ElementId(BuiltInCategory.OST_Areas);
+            ElementId curLegendId = view.GetColorFillSchemeId(areaCatId);
 
-            // Find the color fill legend applied to the view
-            ColorFillLegend curLegend = Utils.GetColorLegendByView(curView);
+            if (curLegendId == ElementId.InvalidElementId)
+                view.SetColorFillSchemeId(areaCatId, scheme.Id);
 
-            // get element ID of legend
-            ElementId curLegendID = curView.GetColorFillSchemeId(curView.Category.Id);
-
-            // define the insertion point
-            XYZ insPoint = new XYZ(0, 0, 0);
-
-            // create new instance of color fill legend
-            ColorFillLegend.Create(curDoc, curViewID, curLegendID, insPoint);
-        }
-
-        internal static ColorFillLegend GetColorLegendByView(ViewPlan curView)
-        {
-            ColorFillLegend m_col = new FilteredElementCollector(curView.Document, curView.Id)
-                .OfCategory(BuiltInCategory.OST_ColorFillLegends).Cast<ColorFillLegend>()
-                .First();
-
-            return m_col;
+            ColorFillLegend.Create(view.Document, view.Id, areaCatId, XYZ.Zero);
         }
     }
 }

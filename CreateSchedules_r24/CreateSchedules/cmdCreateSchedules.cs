@@ -192,7 +192,7 @@ namespace CreateSchedules_r24
                                     }
 
                                     // add the color fill legend
-                                    Utils.AddColorLegend(curDoc, curView);
+                                    Utils.AddColorLegend(curView, floorColorScheme);
                                 }
                                 else if (curView.Name == "Main Level" || curView.Name == "First Floor")
                                 {
@@ -215,7 +215,7 @@ namespace CreateSchedules_r24
                                     }
 
                                     // add the color fill legend
-                                    Utils.AddColorLegend(curDoc, curView);
+                                    Utils.AddColorLegend(curView, floorColorScheme);
                                 }
                                 else
                                 {
@@ -232,6 +232,9 @@ namespace CreateSchedules_r24
                                     {
                                         Utils.CreateFloorAreaWithTag(curDoc, curView, ref insPoint, ref tagInsert, areaInfo);
                                     }
+
+                                    // add the color fill legend
+                                    Utils.AddColorLegend(curView, floorColorScheme);
                                 }
                             }
                         }
@@ -476,6 +479,9 @@ namespace CreateSchedules_r24
                                     {
                                         Utils.CreateFloorAreaWithTag(curDoc, curView, ref insPoint, ref tagInsert, areaInfo);
                                     }
+
+                                    // add the color fill legend
+                                    Utils.AddColorLegend(curView, frameColorScheme);
                                 }
                                 else if (curView.Name == "Main Level" || curView.Name == "First Floor")
                                 {
@@ -489,6 +495,9 @@ namespace CreateSchedules_r24
                                     {
                                         Utils.CreateFloorAreaWithTag(curDoc, curView, ref insPoint, ref tagInsert, areaInfo);
                                     }
+
+                                    // add the color fill legend
+                                    Utils.AddColorLegend(curView, frameColorScheme);
                                 }
                                 else
                                 {
@@ -502,6 +511,9 @@ namespace CreateSchedules_r24
                                     {
                                         Utils.CreateFloorAreaWithTag(curDoc, curView, ref insPoint, ref tagInsert, areaInfo);
                                     }
+
+                                    // add the color fill legend
+                                    Utils.AddColorLegend(curView, frameColorScheme);
                                 }
                             }
                         }
@@ -727,6 +739,9 @@ namespace CreateSchedules_r24
                             {
                                 Utils.CreateFloorAreaWithTag(curDoc, curView, ref insPoint, ref tagInsert, areaInfo);
                             }
+
+                            // add the color fill legend
+                            Utils.AddColorLegend(curView, atticColorScheme);
                         }
                     }
 
