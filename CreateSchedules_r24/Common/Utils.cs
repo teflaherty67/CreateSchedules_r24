@@ -7,7 +7,7 @@ namespace CreateSchedules_r24
     internal static class Utils
     {
 
-        #region Areas Scheme
+        #region Area Scheme
 
         internal static AreaScheme GetAreaSchemeByName(Document doc, string schemeName)
         {
